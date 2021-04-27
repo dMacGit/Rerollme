@@ -1,4 +1,4 @@
-import "./Panel.css";
+// import "./Panel.css";
 
 import PropTypes from "prop-types";
 
