@@ -2,6 +2,9 @@
 
 _Reroll Me is a Simple Web Application that can randomly generate a new persona_
 
+![Build Status](https://github.com/dMacGit/rerollme/actions/workflows/Deploy.yml/badge.svg?branch=main) 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/e155f476-8dd9-4e77-83b2-6639c05494e1/deploy-status)](https://app.netlify.com/sites/mystifying-bose-4d3620/deploys)
+
 ## Contents
 
 - [General info](#General-Info)
