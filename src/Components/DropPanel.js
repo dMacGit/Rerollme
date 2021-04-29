@@ -21,8 +21,8 @@ const DropPanel = (
   var key = 0;
 
   return (
-    <div className="Block">
-      <div className="Block-Input Wrapper">
+    <div className="Panel-Block">
+      <div className="panel-input">
         <select
           type={type}
           className={"country-root country-control country-arrow"}

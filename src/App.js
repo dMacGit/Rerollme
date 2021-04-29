@@ -1,4 +1,4 @@
-import "./App.css";
+import "./App.sass";
 import Header from "./Components/Header";
 import Nav from "./Components/Nav";
 import Panels from "./Components/Panels";

@@ -7,9 +7,9 @@ import { faRedo } from "@fortawesome/free-solid-svg-icons";
 
 const NamePanel = ({ title, text, value, getRandom, updateValue}) => {
   return (
-    <div className="Block">
-      <div className="Block-Input">
-        <p className="panel-input">
+    <div className="Panel-Block">
+      <div className="panel-input">
+        
           <input
             className={title}
             type="text"
@@ -28,7 +28,7 @@ const NamePanel = ({ title, text, value, getRandom, updateValue}) => {
         >
           <FontAwesomeIcon icon={faRedo} />
         </button>
-        </p>
+        
         
       </div>
     </div>

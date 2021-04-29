@@ -6,15 +6,16 @@ import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 const Buttons = ({getRandomAll, createPerson, clearAll}) => 
 {
     return (
-        <div className="Block">
+        <div className="Panel-Block">
             <p className="edit">
                 <button className="generic" type="button" onClick={(e) => getRandomAll()} >Random</button>
-                <span className="space"></span>
+                {/* <span className="space"></span> */}
                 <button className="clear" onClick={(e) => clearAll()} ><FontAwesomeIcon icon={faTrashAlt}/></button>
-            </p>
-            <p className="Block">
                 <button className="generic" onClick={(e) => createPerson()} >Confirm</button>
             </p>
+            {/* <p className="Block">
+                <button className="generic" onClick={(e) => createPerson()} >Confirm</button>
+            </p> */}
         </div>
         
     );
