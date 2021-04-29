@@ -130,7 +130,7 @@ input[type="number"]
 
 .panel 
   @extend %Flex-Column
-  width: auto
+  width: $component-width
   height: auto
   padding: 20px 0px 20px 0px
   
@@ -141,7 +141,7 @@ input[type="number"]
 .panel-card 
   @extend %Flex-Column
   align-items: center
-
+  font-size: .75rem
   width: 80%
   height: auto
   border-radius: 10px
@@ -153,7 +153,21 @@ input[type="number"]
   
   
   
+.card-line
+  height: 25px
+  margin: .1rem 5px
+  // text-align: left
+  display: flex
+  flex-flow: row nowrap
+  justify-content: flex-start
 
+
+.card-line-country
+  margin: .1rem 5px
+  // text-align: left
+  // display: flex
+  // flex-flow: row nowrap
+  // justify-content: flex-start
 
 .card-block 
   height: 25px
@@ -181,11 +195,20 @@ input[type="number"]
   flex-direction: row
   justify-content: space-evenly
   width: auto
-  margin: 0px 30px 5px 40px
+  // margin: 0px 30px 5px 40px
   /* padding: 0px 5px */
 
 
-.card-uAgeGenderWrapper 
+.card-uAgeWrapper 
+  height: 25px
+  display: flex
+  flex-direction: row
+  justify-content: space-around
+  width: auto
+  margin: 0px 30px 5px 40px
+  /* padding: 0px 5px */
+
+.card-uGenderWrapper 
   height: 25px
   display: flex
   flex-direction: row
@@ -196,7 +219,7 @@ input[type="number"]
 
 
 .card-uItem 
-  margin: 0px 0px
+  margin: 0px 0px 0px .5em
   color: gray
   text-align: right
   /* display: block */
@@ -208,14 +231,18 @@ input[type="number"]
 
 .card-uItem-Center 
   margin: 0px 0px
-  display: flex
   color: gray
-  text-align: center
-  justify-content: center
+  
+.card-countryItem
+  margin: 0 .8em 0 .8em
+  color: gray
+  text-align: left
+  
+  /* display: block */
+  overflow: hidden
 
 
-.card-ItemWrapper 
-  height: 25px
+.card-ItemWrapper  
   display: flex
   flex-direction: row
   justify-content: center
@@ -223,10 +250,11 @@ input[type="number"]
 
 
 .card-pLabel 
-  width: 60px
+  // width: 60px
   /* display: flex */
-  
-  margin: 0px 0px 5px 40px
+  height: 100%
+  text-align: center
+  margin: 0px 0px 5px .8em
 
 
 .card-pName 

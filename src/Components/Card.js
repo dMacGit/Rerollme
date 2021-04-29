@@ -8,24 +8,31 @@ const Card = ({ person }) => {
       <div className="Block-Input">*/
         <div className="panel-card">
           <div className="card-pName">
-            {/* <h3 className="card-pLabel">Name:</h3> */}
-            <div className="card-uNameWrapper">
+            
+            <div className="card-line">
+              <h3 className="card-pLabel">First Name</h3>
               <h3 className="card-uItem">{person.firstName === ""? "Frist" : person.firstName}</h3>
+
+            </div>
+            <div className="card-line">
+              <h3 className="card-pLabel">Last Name</h3>
               <h3 className="card-uItem">{person.lastName === ""? "Last" : person.lastName}</h3>
             </div>
           </div>
-          <div className="card-uAgeGenderWrapper">
-            {/* <h3 className="card-block-Label">Age:</h3> */}
+          <div className="card-line">
+            <h3 className="card-pLabel">Age </h3>
             <h3 className="card-uItem">{person.age}</h3>
-          {/* </div> */}
-          {/* <div className="card-block"> */}
-            {/* <h3 className="card-block-Label">Gender:</h3> */}
+          </div>
+          <div className="card-line">
+            <h3 className="card-pLabel">Gender </h3>
             <h3 className="card-uItem">{person.gender}</h3>
           </div>
           
-          <div className="card-ItemWrapper">
-            {/* <h3 className="card-block-Label">Location:</h3> */}
-            <h3 className="card-uItem-Center">{person.country}</h3>
+          <div className="card-line">
+            <h3 className="card-pLabel">Location </h3>
+          </div>
+          <div className="card-line-country">
+            <h3 className="card-countryItem">{person.country}</h3>
           </div>
         </div>
       /*</div>
