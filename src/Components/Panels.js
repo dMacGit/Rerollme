@@ -226,7 +226,7 @@ class Panels extends React.Component
       return {value: randomGenderID, label:randomGender};
     }
     
-    getRandomCountry = () => {
+    getRandomCountry = () => {      
       console.log("Reqest for random Country!");
       var randomNum = Math.round(Math.random()*countryList.length);
       var randomCountry = countryList[randomNum].label;
