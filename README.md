@@ -29,16 +29,11 @@ Currently Generates basic user data:
 
 ## Technologies
 
-This project makes use of **Public** United States Census Citizen Name data.
-
-- __*It picks from a list of the top 15,000 most common Male and Female names.*__
-
-- __*It also picks a list of the top 150,000 most common last names.*__
-
 It was built with:
 
 - [React.JS](https://reactjs.org/)
 - [Fontawsome](https://fontawesome.com/)
+- [Faker.JS](https://github.com/Marak/Faker.js#readme)
 
 ## Installation
 

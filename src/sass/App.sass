@@ -1,0 +1,49 @@
+@use './abstracts' as *
+
+[data-theme="dark"]
+  $primary-background-color: $dark-theme-primary-bg-color
+  $secondary-backgound-color: $dark-theme-secondary-bg-color
+  $primary-color: $dark-theme-main-color
+  body
+    background-color: $primary-background-color
+    color: $primary-color
+  .App
+    background-color: $secondary-backgound-color
+    color: $primary-color
+  .topbar-wrapper
+    background-color: $dark-blue2-color
+  .fa-github
+    color: $toggle-dark-icon-color
+  button
+    color: $dark-theme-main-color
+  .btn-primary, .rndButton
+    background-color: $dark-primary-button-color
+  .generic
+    background-color: $dark-primary-button-color
+  .clear
+    background-color: $dark-secondary-button-color
+
+@mixin base-colors
+  
+  background-color: $primary-background-color
+  color: $primary-color
+
+
+body
+  // background-color: $primary-background-color
+  margin: 2rem 0 0 0
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif
+  --webkit-font-smoothing: antialiased
+  --moz-osx-font-smoothing: grayscale  
+  display: flex
+  justify-content: center
+
+
+.App
+  @include flex-column
+  // @include base-colors
+  background-color: $secondary-background-color
+  color: $primary-color
+  text-align: center
+  width: 350px
+  border-radius: 38px 38px 38px 38px

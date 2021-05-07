@@ -1,4 +1,4 @@
-// import "./DropPanel.css";
+import '../sass/components/DropPanel.sass'
 
 import PropTypes from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

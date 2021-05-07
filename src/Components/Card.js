@@ -1,4 +1,4 @@
-// import "./Panel.css";
+import '../sass/components/Card.sass'
 
 import PropTypes from "prop-types";
 
