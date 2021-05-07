@@ -9,73 +9,111 @@ import NamePanel from './NamePanel'
 import fNames from "../Data/female_names.json";
 import mNames from "../Data/male_names.json";
 import lastNames from "../Data/lastnames.json";
+import faker from "faker"
 
 
-const Panels = () =>
+class Panels extends React.Component
 {
-
-    let genderList = [
-      { "value": "Male", "label": "Male" },
-      { "value": "Female", "label": "Female" } ];
+  constructor(props)
+  {
+    super(props);
+    // let MINRANGE = 18;
+    // let MAXRANGE = 62;
+    this.state = {
+      genderList: [{ "value": "Female", "label": "Female" },{ "value": "Male", "label": "Male" }],      
+      firstName: "",
+      lastName: "",
+      gender: { value: "Gender..." },
+      country: {value:"Country..."},
+      selectedGender: {id:0},
+      selectedCountry: {id:0},
+      age: "",
+      ageRange: {min:18,max:80},
+      person: {firstName:"",lastName:"",gender:"",country:"",age:""},
+      idVisible: false,
+      firstNameValidated: false,
+      lastNameValidated: false,
+      genderValidated: false,
+      ageValidated: false,
+      locationValidated: false
+    }
 
     //const { fNamesSize, mNamesSize, lastNamesSize } = this.props;
-    const [firstName, setFirstName] = useState("");
-    const [lastName, setLastName ] = useState("");
-    const [gender, setGender] = useState({value:"Gender..."});
-    const [country, setCountry] = useState({value:"Country..."});
-    const [selectedGender, setSelectGenderOption] = useState({id:0});
-    const [selectedCountry, setSelectCountryOption] = useState({id:0});
-    const [age, setAge] = useState("");
-    let ageRange = {min:18, max:80};
-    const [person, setPerson] = useState({firstName:"",lastName:"", gender:"",country:"",age:""})
-    const [idVisible, toggleVisible] = useState(false);
+    // const [firstName, setFirstName] = useState("");
+    // const [lastName, setLastName ] = useState("");
+    // const [gender, setGender] = useState({value:"Gender..."});
+    // const [country, setCountry] = useState({value:"Country..."});
+    // const [selectedGender, setSelectGenderOption] = useState({id:0});
+    // const [selectedCountry, setSelectCountryOption] = useState({id:0});
+    // const [age, setAge] = useState("");
+    // let ageRange = {min:18, max:80};
+    // const [person, setPerson] = useState({firstName:"",lastName:"", gender:"",country:"",age:""})
+    // const [idVisible, toggleVisible] = useState(false);
 
-    const [firstNameValidated,updateFirstNameValidated] = useState(false);
-    const [lastNameValidated,updateLastNameValidated] = useState(false);
-    const [genderValidated,updateGenderValidated] = useState(false);
-    const [ageValidated,updateAgeValidated] = useState(false);
-    const [locationValidated,updateLocationValidated] = useState(false);
+    // const [firstNameValidated,updateFirstNameValidated] = useState(false);
+    // const [lastNameValidated,updateLastNameValidated] = useState(false);
+    // const [genderValidated,updateGenderValidated] = useState(false);
+    // const [ageValidated,updateAgeValidated] = useState(false);
+    // const [locationValidated,updateLocationValidated] = useState(false);
 
     // let validPerson = [ {'title': 'first','valid': false} , {'title':'last','valid': false}, {'title':'gender','valid': false}, {'title':'country','valid': false}, {'title': 'age','valid': false}];
     // const [valid, setValidation ] = useState(validPerson);
+  }
     
+    
+    componentDidUpdate = (elementName) => {
+      
+      if (elementName === "gender")
+      {
+        // this.getRandomFirstName();
+        // console.log("Gender Element did update, First Name Randomized!");
+        // this.setState({firstNameValidated:true});
+        
+      }
+      else {
+        console.log("Component did update!");
+      }
+      
+      
+  }
 
-    const createPerson = () => {
-      let newPerson = {firstName:firstName,lastName:lastName,gender:gender.label,country:country.label,age:age};
+
+    createPerson = () => {
+      let newPerson = {firstName:this.state.firstName,lastName:this.state.lastName,gender:this.state.gender.label,country:this.state.country.label,age:this.state.age};
       console.log(newPerson);
-      setPerson(newPerson);
-      if (validateAll() === true){
+      this.setState({person:newPerson});
+      if (this.validateAll() === true){
 
-        toggleVisible( (idVisible? true : true) );
+        this.setState({idVisible:this.state.idVisible? true : true});
       }
     }
 
-    const updateValue = (e,title) => {
+    updateValue = (e,title) => {
 
       switch (title) {
         case "firstName":
-          updateFirstNameValidated(false);
+          this.setState({firstNameValidated:false});
           var firstNameUpdateValue = e.target.value;
-          setFirstName(firstNameUpdateValue);
+          this.setState({firstName:firstNameUpdateValue});
           if (firstNameUpdateValue !== "" & firstNameUpdateValue.length >= 2) {
-            updateFirstNameValidated(true);
+            this.setState({firstNameValidated:true});
           }
           break;
         case "lastName":
-          updateLastNameValidated(false);
+          this.setState({lastNameValidated:false});
           var lastNameUpdateValue = e.target.value;
-          setLastName(lastNameUpdateValue);
+          this.setState({lastName:lastNameUpdateValue});
           if (lastNameUpdateValue !== "" & lastNameUpdateValue.length >= 2) {
-            updateLastNameValidated(true);
+            this.setState({lastNameValidated:true});
           }
           break;
         case "gender":
           let userSelectedGender = e.target.selectedOptions[0];
           let userSelectedGenderOptionIndex = userSelectedGender.index;
           console.log(userSelectedGenderOptionIndex);
-          setSelectGenderOption(userSelectedGenderOptionIndex === selectedGender.id ? selectedGender.id : userSelectedGenderOptionIndex);
-          updateGenderValidated(true);
-          setGender({value:userSelectedGender.value,label:userSelectedGender.text});
+          this.setState({selectedGender:userSelectedGenderOptionIndex === this.state.selectedGender.id ? this.state.selectedGender.id : userSelectedGenderOptionIndex});
+          this.setState({genderValidated:true});
+          this.setState({gender:{value:userSelectedGender.value,label:userSelectedGender.text}});
           break;
 
         case "country":
@@ -83,15 +121,15 @@ const Panels = () =>
           let userSelectedCountry = e.target.selectedOptions[0];
           let userSelectedCountryOptionIndex = userSelectedCountry.index;
           console.log(userSelectedCountryOptionIndex);
-          setSelectCountryOption(userSelectedCountryOptionIndex === selectedCountry.id ? selectedCountry.id : userSelectedCountryOptionIndex);
-          updateLocationValidated(true);
-          setCountry({value:userSelectedCountry.value, label:userSelectedCountry.text});
+          this.setState({selectedCountry:userSelectedCountryOptionIndex === this.state.selectedCountry.id ? this.state.selectedCountry.id : userSelectedCountryOptionIndex});
+          this.setState({locationValidated:true});
+          this.setState({country:{value:userSelectedCountry.value, label:userSelectedCountry.text}});
           break;
 
         case "age":
-          updateAgeValidated(false);
-          setAge( e.target.value);
-          updateAgeValidated(true);
+          this.setState({ageValidated:false});
+          this.setState({age:e.target.value});
+          this.setState({ageValidated:true});
           break;
         default:
           console.log('[updateValue] Reached end of Swtich cases "Err" ' + title);
@@ -101,33 +139,30 @@ const Panels = () =>
       //e.target.placeholder = this.state.value;
     }
 
-    const validateAll = () => {
+    validateAll = () => {
       let isValidated = false;
       // Ignore First & Last Name validation
       // Need to validate : Gender selection, Age, and Country
-      if ( firstNameValidated & lastNameValidated & genderValidated & ageValidated & locationValidated ){
+      if ( this.state.firstNameValidated & this.state.lastNameValidated & this.state.genderValidated & this.state.ageValidated & this.state.locationValidated ){
         isValidated = true;
       }
-
       return isValidated;
     }
 
 
-    const getFemaleName = () => {
-      let randomNum = Math.round(Math.random()*fNames.length);
-      let randomName = fNames[randomNum];
-      console.log("Generated randomNum "+randomNum+" picked => "+randomName);
-      return randomName;
+    getFemaleName = () => {
+      let newFemaleName = faker.name.firstName(1);
+      console.log("Faker Generated random Female Name. picked => "+newFemaleName);
+      return newFemaleName;
     }
     
-    const getMaleName = () => {
-      let randomNum = Math.round(Math.random()*mNames.length);
-      let randomName = mNames[randomNum];
-      console.log("Generated randomNum "+randomNum+" picked => "+randomName);
-      return randomName;
+    getMaleName = () => {
+      let newMaleName = faker.name.firstName(0);
+      console.log("Faker Generated random Male Name. picked => "+newMaleName);
+      return newMaleName;
     }
     
-    const formatName = (string) =>
+    formatName = (string) =>
     {
       return string.replace(/\S*/g, function (word) {
           return word.charAt(0) + word.slice(1).toLowerCase();
@@ -135,125 +170,160 @@ const Panels = () =>
     }
     
     
-    const getRandomAll = () => {
-      const elements = ["gender", "firstName", "lastName", "country", "age" ];      
+    getRandomAll = () => {
+      const elements = ["gender", "country", "age", "lastName" ];      
       console.log(elements)
       for (const element of elements)
-      {      
-        getRandom(element);
+      {
+        if (element === "gender") {
+          this.setState({ gender:this.getRandomGender() }, () => {  
+            this.setState({firstName:this.getRandomFirstName()});
+            console.log("Gender Element did update, First Name Randomized!"); 
+          });
+          
+          // this.getRandomFirstName();
+          // console.log("Set gender as: ",gender.value);
+          this.setState({firstNameValidated:true});
+          this.setState({genderValidated:true});
+          
+        }
+        else {
+          this.getRandom(element);
+        }
+        
       }
-      toggleVisible(false);
+      this.setState({idVisible:false});
     }
     
-    const clearAll = () => {
+    clearAll = () => {
       console.log("User request to clear Persona!");
-      setFirstName("");
-      updateFirstNameValidated(false);
-      setLastName("");
-      updateLastNameValidated(false);
-      setGender({value:"Gender..."});
-      updateGenderValidated(false);
-      setCountry({value:"Country..."});
-      updateLocationValidated(false)
-      setAge("");
-      updateAgeValidated(false);
-      toggleVisible(false);
+      this.setState({firstName:""});
+      this.setState({firstNameValidated:false});
+      this.setState({lastName:""});
+      this.setState({lastNameValidated:false});
+      this.setState({gender:{value:"Gender..."}});
+      this.setState({genderValidated:false});
+      this.setState({country:{value:"Country..."}});
+      this.setState({locationValidated:false});
+      this.setState({age:""});
+      this.setState({ageValidated:false});
+      this.setState({idVisible:false});
+      // this.state.firstNameValidated = false;
+      // this.state.lastName = "";
+      // this.state.lastNameValidated= false;
+      // this.state.gender = {value:"Gender..."};
+      // this.state.genderValidated = false;
+      // this.state.country = {value:"Country..."};
+      // this.state.locationValidated = false;
+      // this.state.age = "";
+      // this.state.ageValidated = false;
+      // this.state.idVisible = false;
     }
     
-    const getRandom = (title) => {
+    getRandom = (title) => {
       switch (title) {
         case "firstName":
-          setFirstName(getRandomFirstName());
-          updateFirstNameValidated(true);
+          this.setState({firstName:this.getRandomFirstName()});
+          this.setState({firstNameValidated:true});
           break;
         case "lastName":
-          let surName = formatName(getRandomLastName());
-          setLastName(surName);
-          updateLastNameValidated(true);
+          let surName = this.formatName(this.getRandomLastName());
+          this.setState({lastName:surName});
+          this.setState({lastNameValidated:true});
           break;
         case "gender":
-          setGender(getRandomGender());
-          updateGenderValidated(true);
+          this.setState({gender:this.getRandomGender()});
+          // console.log("Set gender as: ",gender.value);
+          this.setState({genderValidated:true});
           break;
         case "country":
-          setCountry(getRandomCountry());
-          updateLocationValidated(true);
+          this.setState({country:this.getRandomCountry()});
+          this.setState({locationValidated:true});
           break;
         case "age":
-          setAge(getRandomAge());
-          updateAgeValidated(true);
+          this.setState({age:this.getRandomAge()});
+          this.setState({ageValidated:true});
           break;
         default:
           console.log('Reached end of Swtich cases "Err" ' + title);
       }
     }
     
-    const getRandomFirstName = () => {
+    getRandomFirstName = () => {
       var randomName = "";
+      let genderValue = this.state.gender.value;
       console.log("Reqest for random First Name!");
-      if (gender !== "") {
-        console.log("Gender: "+gender+" was defined");
-        randomName = (gender === 'Male' ? getMaleName() : getFemaleName());
+      if (genderValue !== "Gender..." && genderValue !== "" ) {
+        console.log("Gender: "+genderValue+" was defined");
+        randomName = (genderValue === 'Male' ? this.getMaleName() : this.getFemaleName());
       }
       else {
         console.log("No Gender set, randomizing");
-        let autoRandomGender = getRandomGender();
-        setGender(autoRandomGender);
-        randomName = (autoRandomGender === 'Male' ? getMaleName() : getFemaleName());
+        let autoRandomGender = this.getRandomGender();
+        this.setState({gender:autoRandomGender});
+        randomName = (autoRandomGender === 'Male' ? this.getMaleName() : this.getFemaleName());
       }
       
       console.log("Picked: "+randomName);
       return randomName;
     }
     
-    const getRandomLastName = () => {
+    getRandomLastName = () => {
       console.log("Reqest for random Last Name!");
-      let randomNum = Math.round(Math.random()*lastNames.length);
-      let randomName = lastNames[randomNum];
-      console.log("Generated randomNum "+randomNum+" picked => "+randomName);
-      return randomName;
+      // let randomNum = Math.round(Math.random()*lastNames.length);
+      // let randomName = lastNames[randomNum];
+      // console.log("Generated randomNum "+randomNum+" picked => "+randomName);
+      let randomLastName = faker.name.lastName();
+      console.log("Generated random lastName. picked => "+randomLastName);
+      return randomLastName;
     
     }
     
-    const getRandomGender = () => {
+    getRandomGender = () => {
       console.log("Reqest for random Gender!");
       var randomNum = Math.round(Math.random());
       console.log("Random num# "+randomNum);
-      var randomGender = genderList[randomNum].label;
-      var randomGenderID = genderList[randomNum].value;
-      console.log( (randomNum === randomGenderID ? 'Picked: Male' : 'Picked: Female') );
+      var randomGender = this.state.genderList[randomNum].label;
+      var randomGenderID = this.state.genderList[randomNum].value;
+      console.log("randomGenderID",randomGenderID);
+      console.log( (randomNum === 1 ? 'Picked: Male' : 'Picked: Female') );
       // let randomGender = (randomNum === 0 ? 'Male' : 'Female');
       return {value: randomGenderID, label:randomGender};
     }
     
-    const getRandomCountry = () => {
+    getRandomCountry = () => {
       console.log("Reqest for random Country!");
       var randomNum = Math.round(Math.random()*countryList.length);
       var randomCountry = countryList[randomNum].label;
       var randomCountryID = countryList[randomNum].value;
-      console.log("id:"+randomCountryID+" name:"+randomCountry+" chosen!");
+      console.log("CountryCode:"+randomCountryID+" name:"+randomCountry+" chosen!");
+      // let randomCountryID = faker.address.countryCode;
+      // let randomCountry = faker.address.country;
+      
       return {value:randomCountryID, label:randomCountry};
     }
     
-    const getRandomAge = () => {
+    getRandomAge = () => {
       console.log("Reqest for random Age!");
-      let randomAge = Math.round(Math.random()*MAXRANGE)+MINRANGE;
+      let randomAge = Math.round(Math.random()*this.state.ageRange.max)+this.state.ageRange.min;
       console.log("Generated random Age "+randomAge);
       return randomAge;
     }
   
-    
-    return (
-        <div className="Panels panel">
-          <NamePanel title="firstName" text="First Name..." value={firstName} updateValue={updateValue} getRandom={getRandom} />
-          <NamePanel title="lastName"  text="last Name..." value={lastName} updateValue={updateValue} getRandom={getRandom} />
-          <DropPanel title="gender" type="text" text="Gender..." selectOptions={genderList} selectedOption={selectedGender} value={gender.value} updateValue={updateValue} getRandom={getRandom} options={genderList} />
-          <DropPanel title="country" type="text" text="Country..." selectOptions={countryList} selectedOption={selectedCountry} value={country.value} updateValue={updateValue} getRandom={getRandom} options={countryList} />
-          <NumPanel title="age" type="number" text="Age..." value={age} ageRange={ageRange} updateValue={updateValue} getRandom={getRandom} />
-          <Buttons getRandomAll={getRandomAll} clearAll={clearAll} createPerson={createPerson} />
-          { (idVisible===true? <Card title="New Persona" person={person}/> : "") }
-        </div>
-    );
+    render()
+    {
+      return (
+          <div className="Panels panel">
+            <NamePanel title="firstName" text="First Name..." value={this.state.firstName} updateValue={this.updateValue} getRandom={this.getRandom} />
+            <NamePanel title="lastName"  text="last Name..." value={this.state.lastName} updateValue={this.updateValue} getRandom={this.getRandom} />
+            <DropPanel title="gender" type="text" text="Gender..." selectOptions={this.state.genderList} selectedOption={this.state.selectedGender} value={this.state.gender.value} updateValue={this.updateValue} getRandom={this.getRandom} options={this.state.genderList} />
+            <DropPanel title="country" type="text" text="Country..." selectOptions={countryList} selectedOption={this.state.selectedCountry} value={this.state.country.value} updateValue={this.updateValue} getRandom={this.getRandom} options={countryList} />
+            <NumPanel title="age" type="number" text="Age..." value={this.state.age} ageRange={this.state.ageRange} updateValue={this.updateValue} getRandom={this.getRandom} />
+            <Buttons getRandomAll={this.getRandomAll} clearAll={this.clearAll} createPerson={this.createPerson} />
+            { (this.state.idVisible===true? <Card title="New Persona" person={this.state.person}/> : "") }
+          </div>
+      );
+    }
 
   
 }
@@ -263,8 +333,7 @@ const Panels = () =>
 
 
 
-let MINRANGE = 18;
-let MAXRANGE = 62;
+
 
 //this.initPanels();
 
