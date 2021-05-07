@@ -1,4 +1,5 @@
-import '../sass/components/Panel.sass'
+// import "./Panel.css";
+
 import PropTypes from "prop-types";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

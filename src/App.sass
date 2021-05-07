@@ -1,9 +1,277 @@
-@use '../App.sass' as app
-@use 'Panel.sass'
+$component-width: 250px
+  
+%Flex-Row
+  display: flex
+  flex-flow: row nowrap
+  justify-content: center
+
+%Flex-Column
+  display: flex
+  flex-flow: column nowrap
+  justify-content: center
+  align-items: center
+
+%Button-Height
+  height: 40px
+
+%Flex-Row-Spaced
+  display: flex
+  flex-flow: row nowrap
+  justify-content: space-evenly
+
+body 
+  margin: 0
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif
+  -webkit-font-smoothing: antialiased
+  -moz-osx-font-smoothing: grayscale
+  
+  display: flex
+  justify-content: center
+  
 
 
-// DropPanel Style
-// @include base-colors
+code 
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace
+
+
+.App 
+  @extend %Flex-Column
+  text-align: center
+  width: 350px
+
+
+
+        // Buttons Style
+
+
+.edit 
+  @extend %Flex-Row-Spaced
+  width: 100%
+
+
+
+.space 
+  width: 30px
+  height: 30px
+
+
+button 
+  
+  color: white
+  border: 0
+  border-radius: 5px 5px 5px 5px
+  -webkit-appearance: none
+
+
+.generic 
+  @extend %Button-Height
+  width: 75px
+  background: lightskyblue
+
+
+.clear 
+  @extend %Button-Height
+  width: 50px
+  background: red
+
+
+
+
+              // Panel Style
+
+
+.Panel-Block
+  @extend %Flex-Row
+  width: 100%
+
+.panel-input
+  @extend %Flex-Row
+  margin: 16px 0
+  height: 30px
+  width: $component-width
+
+
+input 
+  width: 188px
+  padding-left: 10px
+  border-width: 1px
+  border-radius: 5px 0px 0px 5px
+
+
+.btn-primary 
+  /*
+    margin-left: -50px
+    height: 30px
+    width: 50px
+    background: lightskyblue
+    color: white
+    border: 0
+    border-radius: 0px 3px 3px 0px
+    -webkit-appearance: none
+    */
+  margin-right: 0px
+  height: 30px
+  width: 50px
+  background: lightskyblue
+  color: white
+  border: 0
+  border-radius: 0px 3px 3px 0px
+  -webkit-appearance: none
+
+
+input[type="number"] 
+  /*height: 30px*/
+  
+  padding: 0px 0px 0px 10px
+  border-width: 1px
+  border-radius: 5px 0px 0px 5px
+
+
+
+.panel 
+  @extend %Flex-Column
+  width: $component-width
+  height: auto
+  padding: 20px 0px 20px 0px
+  
+  
+
+
+
+.panel-card 
+  @extend %Flex-Column
+  align-items: center
+  font-size: .75rem
+  width: 80%
+  height: auto
+  border-radius: 10px
+  border: 1px solid
+  border-color: gray
+  display: block
+  margin: 0px 10px
+  padding: 16px 0px 16px 0px
+  
+  
+  
+.card-line
+  height: 25px
+  margin: .1rem 5px
+  // text-align: left
+  display: flex
+  flex-flow: row nowrap
+  justify-content: flex-start
+
+
+.card-line-country
+  margin: .1rem 5px
+  // text-align: left
+  // display: flex
+  // flex-flow: row nowrap
+  // justify-content: flex-start
+
+.card-block 
+  height: 25px
+  /*width: 100%*/
+  margin: 5px 10px
+  text-align: left
+  display: flex
+  flex-direction: row
+  /* justify-content: space-around */
+
+
+.card-block-Label 
+  
+  /* display: flex */
+  
+  margin: 0px 5px 0px 30px
+  width: 80px
+  position: left
+  display: block
+
+
+.card-uNameWrapper 
+  height: 25px
+  display: flex
+  flex-direction: row
+  justify-content: space-evenly
+  width: auto
+  // margin: 0px 30px 5px 40px
+  /* padding: 0px 5px */
+
+
+.card-uAgeWrapper 
+  height: 25px
+  display: flex
+  flex-direction: row
+  justify-content: space-around
+  width: auto
+  margin: 0px 30px 5px 40px
+  /* padding: 0px 5px */
+
+.card-uGenderWrapper 
+  height: 25px
+  display: flex
+  flex-direction: row
+  justify-content: space-around
+  width: auto
+  margin: 0px 30px 5px 40px
+  /* padding: 0px 5px */
+
+
+.card-uItem 
+  margin: 0px 0px 0px .5em
+  color: gray
+  text-align: right
+  /* display: block */
+  overflow: hidden
+
+.card-uItem-Last 
+  margin-left: 30px
+
+
+.card-uItem-Center 
+  margin: 0px 0px
+  color: gray
+  
+.card-countryItem
+  margin: 0 .8em 0 .8em
+  color: gray
+  text-align: left
+  
+  /* display: block */
+  overflow: hidden
+
+
+.card-ItemWrapper  
+  display: flex
+  flex-direction: row
+  justify-content: center
+  margin: 0px 30px 5px 40px
+
+
+.card-pLabel 
+  // width: 60px
+  /* display: flex */
+  height: 100%
+  text-align: center
+  margin: 0px 0px 5px .8em
+
+
+.card-pName 
+  // width: 100%
+  
+  // display: flex
+  // flex-direction: column
+  // justify-content: center
+  text-align: center
+
+.card-pGen 
+  
+  display: flex
+  flex-direction: row
+  justify-content: space-around
+
+        // DropPanel Style
 
 
 select, option 
@@ -129,8 +397,8 @@ select, option
 
 
 .country-option:last-child 
-  // app.$border-bottom-right-radius: 2px
-  // app.$border-bottom-left-radius: 2px
+  border-bottom-right-radius: 2px
+  border-bottom-left-radius: 2px
 
 
 .country-option:hover 
