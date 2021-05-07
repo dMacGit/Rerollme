@@ -1,14 +1,11 @@
 
-import React, {useState} from "react";
+import React from "react";
 import countryList from '../Data/country.json';
 import Card from './Card';
 import NumPanel from './NumPanel';
 import Buttons from './Buttons';
 import DropPanel from './DropPanel';
 import NamePanel from './NamePanel'
-import fNames from "../Data/female_names.json";
-import mNames from "../Data/male_names.json";
-import lastNames from "../Data/lastnames.json";
 import faker from "faker"
 
 
@@ -16,9 +13,7 @@ class Panels extends React.Component
 {
   constructor(props)
   {
-    super(props);
-    // let MINRANGE = 18;
-    // let MAXRANGE = 62;
+    super(props);  
     this.state = {
       genderList: [{ "value": "Female", "label": "Female" },{ "value": "Male", "label": "Male" }],      
       firstName: "",
@@ -37,46 +32,7 @@ class Panels extends React.Component
       ageValidated: false,
       locationValidated: false
     }
-
-    //const { fNamesSize, mNamesSize, lastNamesSize } = this.props;
-    // const [firstName, setFirstName] = useState("");
-    // const [lastName, setLastName ] = useState("");
-    // const [gender, setGender] = useState({value:"Gender..."});
-    // const [country, setCountry] = useState({value:"Country..."});
-    // const [selectedGender, setSelectGenderOption] = useState({id:0});
-    // const [selectedCountry, setSelectCountryOption] = useState({id:0});
-    // const [age, setAge] = useState("");
-    // let ageRange = {min:18, max:80};
-    // const [person, setPerson] = useState({firstName:"",lastName:"", gender:"",country:"",age:""})
-    // const [idVisible, toggleVisible] = useState(false);
-
-    // const [firstNameValidated,updateFirstNameValidated] = useState(false);
-    // const [lastNameValidated,updateLastNameValidated] = useState(false);
-    // const [genderValidated,updateGenderValidated] = useState(false);
-    // const [ageValidated,updateAgeValidated] = useState(false);
-    // const [locationValidated,updateLocationValidated] = useState(false);
-
-    // let validPerson = [ {'title': 'first','valid': false} , {'title':'last','valid': false}, {'title':'gender','valid': false}, {'title':'country','valid': false}, {'title': 'age','valid': false}];
-    // const [valid, setValidation ] = useState(validPerson);
   }
-    
-    
-    componentDidUpdate = (elementName) => {
-      
-      if (elementName === "gender")
-      {
-        // this.getRandomFirstName();
-        // console.log("Gender Element did update, First Name Randomized!");
-        // this.setState({firstNameValidated:true});
-        
-      }
-      else {
-        console.log("Component did update!");
-      }
-      
-      
-  }
-
 
     createPerson = () => {
       let newPerson = {firstName:this.state.firstName,lastName:this.state.lastName,gender:this.state.gender.label,country:this.state.country.label,age:this.state.age};
@@ -116,8 +72,7 @@ class Panels extends React.Component
           this.setState({gender:{value:userSelectedGender.value,label:userSelectedGender.text}});
           break;
 
-        case "country":
-          //updateLocationValidated(false);
+        case "country":          
           let userSelectedCountry = e.target.selectedOptions[0];
           let userSelectedCountryOptionIndex = userSelectedCountry.index;
           console.log(userSelectedCountryOptionIndex);
@@ -133,10 +88,7 @@ class Panels extends React.Component
           break;
         default:
           console.log('[updateValue] Reached end of Swtich cases "Err" ' + title);
-      }
-      
-      //console.log(this.state.value);
-      //e.target.placeholder = this.state.value;
+      }      
     }
 
     validateAll = () => {
@@ -179,10 +131,7 @@ class Panels extends React.Component
           this.setState({ gender:this.getRandomGender() }, () => {  
             this.setState({firstName:this.getRandomFirstName()});
             console.log("Gender Element did update, First Name Randomized!"); 
-          });
-          
-          // this.getRandomFirstName();
-          // console.log("Set gender as: ",gender.value);
+          });                    
           this.setState({firstNameValidated:true});
           this.setState({genderValidated:true});
           
@@ -208,16 +157,6 @@ class Panels extends React.Component
       this.setState({age:""});
       this.setState({ageValidated:false});
       this.setState({idVisible:false});
-      // this.state.firstNameValidated = false;
-      // this.state.lastName = "";
-      // this.state.lastNameValidated= false;
-      // this.state.gender = {value:"Gender..."};
-      // this.state.genderValidated = false;
-      // this.state.country = {value:"Country..."};
-      // this.state.locationValidated = false;
-      // this.state.age = "";
-      // this.state.ageValidated = false;
-      // this.state.idVisible = false;
     }
     
     getRandom = (title) => {
@@ -233,7 +172,6 @@ class Panels extends React.Component
           break;
         case "gender":
           this.setState({gender:this.getRandomGender()});
-          // console.log("Set gender as: ",gender.value);
           this.setState({genderValidated:true});
           break;
         case "country":
@@ -269,10 +207,7 @@ class Panels extends React.Component
     }
     
     getRandomLastName = () => {
-      console.log("Reqest for random Last Name!");
-      // let randomNum = Math.round(Math.random()*lastNames.length);
-      // let randomName = lastNames[randomNum];
-      // console.log("Generated randomNum "+randomNum+" picked => "+randomName);
+      console.log("Reqest for random Last Name!");      
       let randomLastName = faker.name.lastName();
       console.log("Generated random lastName. picked => "+randomLastName);
       return randomLastName;
@@ -324,8 +259,6 @@ class Panels extends React.Component
           </div>
       );
     }
-
-  
 }
 
 
