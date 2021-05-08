@@ -28,6 +28,12 @@
     color: gray
   .card-pName
     color: gray
+  input 
+    background-color: $dark-theme-main-color
+    color: gray
+  .country-control
+    color: gray
+    background-color: $dark-theme-main-color
 
 @mixin base-colors
   
@@ -48,8 +54,17 @@ body
 .App
   @include flex-column
   // @include base-colors
+  font-family: 'Roboto'
   background-color: $secondary-background-color
   color: $primary-color
   text-align: center
   width: 350px
   border-radius: 38px 38px 38px 38px
+
+input
+  font-family: "Roboto"
+  background-color: $primary-background-color
+  color: $primary-color
+.country-control
+  font-family: "Roboto"
+  color: $primary-color
