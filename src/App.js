@@ -2,7 +2,6 @@ import "./sass/App.sass";
 import Header from "./Components/Header";
 import Nav from "./Components/Nav";
 import Panels from "./Components/Panels";
-//import "~../../node_modules/@fortawesome/free-solid-svg-icons"
 
 const App = () => {
   
